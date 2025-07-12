@@ -1,4 +1,4 @@
-user = int(input("How old are you ?: "))
+user = int(input("How old are you ?"))
 
 age = user + 27
 

@@ -1,27 +1,31 @@
 # daily_reminder.py
 
-# Ask for user inputs
-task = input("Enter your task: ")
-priority = input("Priority (high/medium/low): ").lower()
-time_bound = input("Is it time-bound? (yes/no): ").lower()
+# --- Inputs ---
+task = input("Task: ").strip()
+priority = input("Priority (high/medium/low): ").strip().lower()
+time_bound = input("Time Bound (yes/no): ").strip().lower()
 
-# Process the task with match case
+# Simple input validation loops (to demonstrate loops without storing multiple tasks)
+while priority != "high" and priority != "medium" and priority != "low":
+    priority = input("Priority (high/medium/low): ").strip().lower()
+
+while time_bound != "yes" and time_bound != "no":
+    time_bound = input("Time Bound (yes/no): ").strip().lower()
+
+# --- Match/Case reaction based on priority ---
 match priority:
     case "high":
-        reminder = f"'{task}' is a high priority task."
+        base = f"'{task}' is a high priority task"
     case "medium":
-        reminder = f"'{task}' is a medium priority task."
+        base = f"'{task}' is a medium priority task"
     case "low":
-        reminder = f"'{task}' is a low priority task."
+        base = f"'{task}' is a low priority task"
     case _:
-        reminder = f"'{task}' has an unknown priority. Please set it clearly."
+        base = f"'{task}' has an unknown priority"
 
-# Add condition for time sensitivity
+# --- Time sensitivity modifies the reminder ---
 if time_bound == "yes":
-    reminder += " It requires immediate attention today!"
+    # IMPORTANT: starts with "Reminder:" and includes the exact phrase
+    print(f"Reminder: {base} that requires immediate attention today!")
 else:
-    reminder += " Consider completing it when you have free time."
-
-# Loop to ensure user sees the reminder 3 times
-for i in range(3):
-    print(f"Reminder {i+1}: {reminder}")
+    print(f"Note: {base}. Consider completing it when you have free time.")
